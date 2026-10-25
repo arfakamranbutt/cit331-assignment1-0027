@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Drama Society - Register</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Campus Drama & Arts Society</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="register.html" class="active">Register</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Event Registration</h2>
+            <p>Fill out the form below to register for upcoming shows or auditions.</p>
+            
+            <div id="confirmation-msg" class="hidden"></div>
+            
+            <form id="registration-form">
+                <fieldset>
+                    <legend>Personal Information</legend>
+
+                    <label for="fullname">Full Name:</label>
+                    <input type="text" id="fullname" name="fullname" required minlength="3" placeholder="e.g. Arfa Kamran">
+                    
+                    <label for="email">University Email:</label>
+                    <input type="email" id="email" name="email" required placeholder="e.g. 24l-0027@qu.edu.pk">
+                    
+                    <label for="phone">Phone Number:</label>
+                    <input type="tel" id="phone" name="phone" pattern="[0-9]{10,11}" placeholder="e.g. 03001234567">
+                
+                </fieldset>
+                
+                
+                <fieldset>
+                    <legend>Event Details</legend>
+                    
+                    <label for="event-choice">Select Event:</label>
+                    <select id="event-choice" name="event-choice" required>
+                        <option value="">-- Please choose an event --</option>
+                        <option value="Rumi's Echo: A Sufi Stage Play">A Sufi Stage Play</option>
+                        <option value="The Great Senior Farewell Roast">The Great Senior Farewell Roast</option>
+                        <option value="Freshman Survival Guide: The Skit">Freshman Survival Guide: The Skit</option>
+                        <option value="Monologue & Improv Night">Improv Night</option>
+                    </select>
+                    
+                    <p>How did you hear about us?</p>
+                    <label><input type="radio" name="source" value="Social Media" checked> Social Media</label>
+                    <label><input type="radio" name="source" value="Campus Poster"> Campus Poster</label>
+                    <label><input type="radio" name="source" value="Friend/Classmate"> Friend/Classmate</label>
+                
+                </fieldset>
+                
+                
+                <button type="submit">Submit Registration</button>
+            
+            </form>
+        </section>
+        
+        <section>
+            <h2>Saved Registrations</h2>
+            <div id="registrations-list"></div>
+            <button id="clear-btn" type="button">Clear All Registrations</button>
+        </section>
+        
+        <aside>
+            <h3>Need Help?</h3>
+            <p>If you encounter any issues submitting the form, contact our team at <a href="mailto:dramaclub@university.edu">drama@university.edu</a>.</p>
+        </aside>
+    
+    
+    </main>
+    
+    <script>
+    const form = document.getElementById('registration-form');
+    const confirmationMsg = document.getElementById('confirmation-msg');
+    const registrationsList = document.getElementById('registrations-list');
+    const clearBtn = document.getElementById('clear-btn');
+
+    displayRegistrations();
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const fullname = document.getElementById('fullname').value;
+        const email = document.getElementById('email').value;
+        const phone = document.getElementById('phone').value;
+        const eventChoice = document.getElementById('event-choice').value;
+        const source = document.querySelector('input[name="source"]:checked').value;
+        const newRegistration = { fullname, email, phone, eventChoice, source };
+        
+        let saved = JSON.parse(localStorage.getItem('dramaRegistrations')) || [];
+        saved.push(newRegistration);
+
+        localStorage.setItem('dramaRegistrations', JSON.stringify(saved));
+
+        confirmationMsg.textContent = "Registration successful! Your details have been saved.";
+        confirmationMsg.style.display = "block";
+
+        form.reset();
+        displayRegistrations();
+    });
+
+    function displayRegistrations() {
+        let saved = JSON.parse(localStorage.getItem('dramaRegistrations')) || [];
+
+      if (saved.length === 0) {
+        registrationsList.innerHTML = "<p>No registrations saved yet.</p>";
+        return;
+      }
+
+      let html = "<table><thead><tr><th>Name</th><th>Email</th><th>Phone</th><th>Event</th><th>Source</th></tr></thead><tbody>";
+      saved.forEach(item => {
+        html += `<tr>
+          <td>${item.fullname}</td>
+          <td>${item.email}</td>
+          <td>${item.phone}</td>
+          <td>${item.eventChoice}</td>
+          <td>${item.source}</td>
+        </tr>`;
+      });
+      html += "</tbody></table>";
+
+      registrationsList.innerHTML = html;
+    }
+
+    clearBtn.addEventListener('click', function() {
+      localStorage.removeItem('dramaRegistrations');
+      confirmationMsg.style.display = "none";
+      displayRegistrations();
+    });
+  </script>
+
+  <footer>
+    <p>&copy; 2026 University Drama Club. Arfa Kamran (24L-BSCS-0027)</p>
+  </footer>
+
+</body>
+</html>
