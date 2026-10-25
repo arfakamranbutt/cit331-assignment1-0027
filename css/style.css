@@ -1,0 +1,197 @@
+/* ==========================================================================
+   1. GENERAL STYLES & BOX MODEL
+   ========================================================================== */
+* {
+  box-sizing: border-box; /* B4 Box Model */
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #fffdf5; /* Off-white background */
+  color: #333333;
+  padding: 20px;
+}
+
+/* ==========================================================================
+   2. HEADER & NAVIGATION (Flexbox Layout)
+   ========================================================================== */
+header {
+  background-color: #d4af37; /* Gold header */
+  color: #ffffff;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 4px solid #b30000; /* Dark Red accent line */
+}
+
+/* Grouping Selector */
+h1, h2, h3 {
+  font-family: 'Georgia', serif;
+}
+
+/* Flexbox for Navbar */
+nav ul {
+  display: flex; /* B4 Flexbox */
+  justify-content: center;
+  gap: 15px;
+  list-style: none;
+  margin-top: 15px;
+}
+
+nav a {
+  color: #ffffff;
+  background-color: #b30000; /* Red buttons */
+  text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+/* Hover state and Active page link */
+nav a:hover,
+nav a.active { /* Pseudo-class and class selectors */
+  background-color: #800000; /* Darker Red */
+}
+
+/* ==========================================================================
+   3. MAIN CONTENT & CARDS
+   ========================================================================== */
+main {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+section {
+  background-color: #ffffff; /* White section card */
+  border: 1px solid #e6d79c; /* Soft gold border */
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 6px;
+}
+
+h2 {
+  color: #b30000; /* Red headers */
+  margin-bottom: 15px;
+  border-bottom: 2px solid #d4af37; /* Gold underline */
+  padding-bottom: 5px;
+}
+
+/* Article Cards */
+article {
+  background-color: #fffdf8;
+  border-left: 4px solid #d4af37; /* Gold accent border */
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+figure img {
+  width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+figcaption {
+  font-size: 0.85em;
+  color: #666666;
+  font-style: italic;
+  margin-top: 5px;
+}
+
+/* ==========================================================================
+   4. FORM STYLING
+   ========================================================================== */
+fieldset {
+  border: 1px solid #d4af37;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+}
+
+legend {
+  font-weight: bold;
+  color: #b30000;
+  padding: 0 5px;
+}
+
+/* Attribute Selector */
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+select {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  background-color: #b30000; /* Red button */
+  color: #ffffff;
+  border: none;
+  padding: 10px 18px;
+  font-size: 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #800000;
+}
+
+/* Table for saved registrations */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+th, td {
+  border: 1px solid #dddddd;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: #d4af37;
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   5. SIDEBAR & FOOTER
+   ========================================================================== */
+aside {
+  background-color: #fff8e6; /* Soft gold background */
+  padding: 15px;
+  border: 1px solid #d4af37;
+  border-radius: 4px;
+  margin-top: 15px;
+}
+
+/* Attribute selector for external links */
+a[href^="https"] {
+  color: #b30000;
+  font-weight: bold;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+  color: #666666;
+  margin-top: 20px;
+}
+
+/* ==========================================================================
+   6. RESPONSIVE LAYOUT (Mobile Query)
+   ========================================================================== */
+@media (max-width: 600px) {
+  nav ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}       
